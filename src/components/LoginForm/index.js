@@ -1,15 +1,61 @@
 import {Component} from 'react'
+import {Redirect} from 'react-router-dom'
+import Cookies from 'js-cookie'
 import './index.css'
 
 class LoginForm extends Component {
-  state = {userInput: '', passwordInput: ''}
+  state = {
+    usernameInput: '',
+    passwordInput: '',
+    submitError: false,
+    errorMessage: '',
+  }
 
   onChangeUsername = event => {
-    this.setState({userInput: event.target.value})
+    this.setState({usernameInput: event.target.value})
+  }
+
+  onChangePassword = event => {
+    this.setState({passwordInput: event.target.value})
+  }
+
+  onSubmitSuccess = jwtToken => {
+    const {history} = this.props
+    Cookies.set('jwt_token', jwtToken, {expires: 30, path: '/'})
+
+    history.replace('/')
+  }
+
+  onSubmitError = errorMsg => {
+    this.setState({submitError: true, errorMessage: errorMsg})
+  }
+
+  onSubmitForm = async event => {
+    event.preventDefault()
+    const {usernameInput, passwordInput} = this.state
+    const userDetails = {
+      username: usernameInput,
+      password: passwordInput,
+    }
+    const url = 'https://apis.ccbp.in/login'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(userDetails),
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+    console.log(response.ok)
+    console.log(data)
+
+    if (response.ok === true) {
+      this.onSubmitSuccess(data.jwt_token)
+    } else {
+      this.onSubmitError(data.error_msg)
+    }
   }
 
   renderUsername = () => {
-    const {userInput} = this.state
+    const {usernameInput} = this.state
 
     return (
       <>
@@ -20,7 +66,7 @@ class LoginForm extends Component {
           id="username"
           type="text"
           className="input"
-          value={userInput}
+          value={usernameInput}
           onChange={this.onChangeUsername}
         />
       </>
@@ -32,11 +78,11 @@ class LoginForm extends Component {
 
     return (
       <>
-        <label htmlFor="username" className="label">
+        <label htmlFor="password" className="label">
           PASSWORD
         </label>
         <input
-          id="username"
+          id="password"
           type="password"
           className="input"
           value={passwordInput}
@@ -47,10 +93,17 @@ class LoginForm extends Component {
   }
 
   render() {
+    const {submitError, errorMessage} = this.state
+
+    const jwtToken = Cookies.get('jwt_token')
+
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
     return (
       <div className="tasty-container">
         <div className="from-bg-container">
-          <form className="form-container">
+          <form className="form-container" onSubmit={this.onSubmitForm}>
             <img
               src="https://res.cloudinary.com/sree7771/image/upload/v1658312644/Frame_274_tph3zo.png"
               alt=""
@@ -64,6 +117,7 @@ class LoginForm extends Component {
             <button type="submit" className="login-button">
               Login
             </button>
+            {submitError && <p className="error-message">*{errorMessage}</p>}
           </form>
         </div>
         <div>
