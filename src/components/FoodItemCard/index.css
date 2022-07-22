@@ -1,0 +1,112 @@
+.food-item-img {
+  left: 11.46%;
+  right: 70.83%;
+  top: 26.29%;
+  bottom: 66.57%;
+
+  background: url();
+  border-radius: 8px;
+  width: 255px;
+  height: 150px;
+}
+
+.food-item-name {
+  left: 31.25%;
+  right: 59.93%;
+  top: 26.95%;
+  bottom: 71.9%;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+
+  letter-spacing: 0.2px;
+
+  /* Light / blue-gray / 700 */
+
+  color: #334155;
+}
+
+.food-item-cost {
+  left: 31.25%;
+  right: 63.96%;
+  top: 28.48%;
+  bottom: 70.38%;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Light / blue-gray / 700 */
+
+  color: #334155;
+}
+
+.food-item-star {
+  width: 12px;
+  right: 978px;
+  top: 38.81%;
+  bottom: 60.62%;
+
+  background: #ffcc00;
+}
+
+.food-item-rating {
+  width: 22px;
+  right: 952px;
+  top: 30.05%;
+  bottom: 69.19%;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  display: flex;
+  align-items: center;
+
+  color: #0a1f44;
+}
+
+.food-item-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style-type: none;
+  margin-bottom: 25px;
+}
+
+.food-item-description {
+  margin-left: 25px;
+}
+
+.add-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+
+  width: 73px;
+  height: 32px;
+  color: #f7931e;
+  border-color: #f7931e;
+  border-radius: 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}

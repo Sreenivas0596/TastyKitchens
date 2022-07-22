@@ -1,0 +1,176 @@
+.image-container {
+  width: 1440px;
+  height: 370px;
+  left: 0px;
+  top: 0px;
+
+  background: #333333;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.restaurant-item-img {
+  width: 445px;
+  height: 280px;
+  left: 165px;
+  top: 176px;
+
+  border-radius: 8px;
+}
+
+.restaurant-details-name {
+  left: 44.44%;
+  right: 41.88%;
+  top: 11.05%;
+  bottom: 86.67%;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 48px;
+  /* identical to box height, or 133% */
+
+  letter-spacing: 0.2px;
+
+  color: #ffffff;
+}
+
+.rest-details-cuisine {
+  left: 44.44%;
+  right: 41.32%;
+  top: 13.9%;
+  bottom: 84.95%;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Light / base / white */
+
+  color: #ffffff;
+}
+
+.rest-location {
+  left: 44.44%;
+  right: 33.33%;
+  top: 15.43%;
+  bottom: 83.43%;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* Light / base / white */
+
+  color: #ffffff;
+}
+
+.rest-star {
+  width: 12px;
+  right: 978px;
+  top: 30.14%;
+  bottom: 69.29%;
+
+  background: #ffcc00;
+}
+
+.rest-rating {
+  width: 22px;
+  right: 762px;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+.rest-ratings {
+  width: 74px;
+  right: 726px;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  /* Light / blue-gray / 200 */
+
+  color: #e2e8f0;
+}
+
+.rest-cost {
+  width: 39px;
+  right: 623px;
+  top: 17.33%;
+  bottom: 81.9%;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+.rest-cost-two {
+  width: 69px;
+  right: 593px;
+  top: 18.29%;
+  bottom: 80.95%;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  /* Light / blue-gray / 200 */
+
+  color: #e2e8f0;
+}
+
+.rest-description {
+  width: 350px;
+  height: 280px;
+  margin-left: 25px;
+}
+
+.rest-rate-cost-container {
+  display: flex;
+}
+
+.rest-star-rating-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

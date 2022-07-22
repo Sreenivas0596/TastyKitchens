@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
-import AllRestaurantsDetails from '../AllRestaurantsDetails'
+import AllRestaurantsSection from '../AllRestaurantsSection'
 import Header from '../Header'
 import CarouselCard from '../CarouselCard'
 import 'slick-carousel/slick/slick.css'
@@ -79,7 +79,7 @@ class Home extends Component {
           </p>
           <hr className="header" />
         </div>
-        <AllRestaurantsDetails />
+        <AllRestaurantsSection />
       </div>
     )
   }

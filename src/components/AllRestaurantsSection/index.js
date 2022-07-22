@@ -12,7 +12,7 @@ const apiStatusConstants = {
   success: 'SUCCESS',
 }
 
-class AllRestaurantsDetails extends Component {
+class AllRestaurantsSection extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     allRestaurantsDetailsList: [],
@@ -158,4 +158,4 @@ class AllRestaurantsDetails extends Component {
   }
 }
 
-export default AllRestaurantsDetails
+export default AllRestaurantsSection

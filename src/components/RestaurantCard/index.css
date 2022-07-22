@@ -74,10 +74,15 @@
   margin-bottom: 20px;
   max-width: 400px;
   min-height: 170px;
+  list-style-type: none;
 }
 
 .ratings-container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.restaurant-link {
+  text-decoration: none;
 }
