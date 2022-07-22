@@ -1,0 +1,43 @@
+.buttons-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.button {
+  background-color: transparent;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  color: #334155;
+}
+
+.page-number {
+  width: 57px;
+  height: 27px;
+  left: 691px;
+  top: 647px;
+
+  font-family: 'Bree Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+
+  /* Light / blue-gray / 700 */
+
+  color: #334155;
+}
+
+.arrow {
+  left: 68.75%;
+  right: -43.75%;
+  top: 12.5%;
+  bottom: 43.75%;
+
+  /* Light / blue-gray / 700 */
+
+  color: #334155;
+  transform: rotate(360deg);
+}

@@ -11,7 +11,7 @@ const Header = props => {
   }
 
   return (
-    <div className="header-container">
+    <nav className="header-container">
       <div className="img-container">
         <img
           src="https://res.cloudinary.com/sree7771/image/upload/v1658312644/Frame_274_tph3zo.png"
@@ -26,7 +26,7 @@ const Header = props => {
           Logout
         </button>
       </div>
-    </div>
+    </nav>
   )
 }
 
