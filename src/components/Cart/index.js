@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Header from '../Header'
+import Footer from '../Footer'
 import './index.css'
 
 class Cart extends Component {
@@ -7,8 +8,8 @@ class Cart extends Component {
     return (
       <div>
         <Header />
-        <div>
-          <div className="cart-img-container">
+        <div className="cart-img-container">
+          <div>
             <img
               src="https://res.cloudinary.com/sree7771/image/upload/v1658492287/cooking_1_dxzxcl.png"
               alt=""
@@ -24,6 +25,7 @@ class Cart extends Component {
             Order Now
           </button>
         </div>
+        <Footer />
       </div>
     )
   }

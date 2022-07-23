@@ -1,8 +1,10 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 import {AiOutlineStar} from 'react-icons/ai'
 import Header from '../Header'
 import FoodItemCard from '../FoodItemCard'
+import Footer from '../Footer'
 import './index.css'
 
 const url = 'https://apis.ccbp.in/restaurants-list/'
@@ -10,6 +12,7 @@ const url = 'https://apis.ccbp.in/restaurants-list/'
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
+  inProgress: 'INPROGRESS',
 }
 
 class RestaurantDetails extends Component {
@@ -24,6 +27,7 @@ class RestaurantDetails extends Component {
   }
 
   getRestaurantDetails = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {match} = this.props
     const {params} = match
 
@@ -128,12 +132,21 @@ class RestaurantDetails extends Component {
     )
   }
 
+  renderLoadingView = () => (
+    <div className="loader-container">
+      <Loader type="TailSpin" color="#f7931e" height={80} width={120} />
+    </div>
+  )
+
   renderRestaurantDetails = () => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderRestaurantDetailsSuccessView()
+
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
 
       default:
         return null
@@ -145,6 +158,7 @@ class RestaurantDetails extends Component {
       <div>
         <Header />
         <div>{this.renderRestaurantDetails()}</div>
+        <Footer />
       </div>
     )
   }

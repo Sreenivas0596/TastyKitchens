@@ -1,0 +1,150 @@
+.footer-bg-container {
+  width: 1440px;
+  height: 424px;
+  left: 0px;
+  top: 712px;
+
+  /* Light / blue-gray / 900 */
+
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-img {
+  color: #000000;
+  border-color: #0f172a;
+}
+
+.footer-heading {
+  height: 48px;
+  left: 44.44%;
+  right: 39.65%;
+  top: calc(50% - 48px / 2 - 92px);
+
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  /* identical to box height, or 150% */
+
+  color: #ffffff;
+}
+
+.footer-description {
+  width: 479px;
+  height: 64px;
+  left: 480px;
+  top: 168px;
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  /* or 133% */
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.pinterest-img {
+  left: 8.33%;
+  right: 8.33%;
+  top: 8.33%;
+  bottom: 8.33%;
+
+  background: #ffffff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+.pin-img {
+  left: 27.78%;
+  right: 28.18%;
+  top: 27.82%;
+  bottom: 16.43%;
+
+  /* Light / blue-gray / 900 */
+  width: 21px;
+  height: 27px;
+  background-color: transparent;
+}
+
+.insta-img {
+  height: 50px;
+  left: 8.33%;
+  right: 10.42%;
+  top: calc(50% - 50px / 2 + 1px);
+
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 43.8592px;
+
+  text-align: center;
+
+  /* Light / base / white */
+
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+.twitter-img {
+  box-sizing: border-box;
+
+  left: 0.33%;
+  right: 0.33%;
+  top: 0.41%;
+  bottom: 0.41%;
+
+  /* Light / base / white */
+
+  height: 45px;
+  width: 56px;
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+.fb-img {
+  left: 8.33%;
+  right: 8.33%;
+  top: 8.33%;
+  bottom: 8.33%;
+
+  background: #ffffff;
+  height: 34px;
+  width: 18px;
+}
+
+.facebook-img {
+  left: 8.33%;
+  right: 8.33%;
+  top: 8.33%;
+  bottom: 8.33%;
+
+  background: #ffffff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.sns-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

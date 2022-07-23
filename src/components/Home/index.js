@@ -1,9 +1,12 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
+
 import AllRestaurantsSection from '../AllRestaurantsSection'
 import Header from '../Header'
 import CarouselCard from '../CarouselCard'
+import Footer from '../Footer'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -12,6 +15,7 @@ import './index.css'
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
+  inProgress: 'INPROGRESS',
 }
 
 class Home extends Component {
@@ -22,6 +26,8 @@ class Home extends Component {
   }
 
   getHomeCarouselImages = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
+
     const jwtToken = Cookies.get('jwt_token')
 
     const url = 'https://apis.ccbp.in/restaurants-list/offers'
@@ -84,12 +90,21 @@ class Home extends Component {
     )
   }
 
+  renderLoadingView = () => (
+    <div className="loader-container">
+      <Loader type="TailSpin" color="#f7931e" height={80} width={80} />
+    </div>
+  )
+
   renderHomeCarouselImages = () => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderHomeCarouselSuccessView()
+
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
 
       default:
         return null
@@ -101,6 +116,7 @@ class Home extends Component {
       <div>
         <Header />
         <div>{this.renderHomeCarouselImages()}</div>
+        <Footer />
       </div>
     )
   }

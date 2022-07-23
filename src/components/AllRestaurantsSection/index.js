@@ -2,14 +2,18 @@ import {Component} from 'react'
 
 import Cookies from 'js-cookie'
 
+import Loader from 'react-loader-spinner'
+
 import {RiArrowLeftSLine, RiArrowRightSLine} from 'react-icons/ri'
 
 import RestaurantCard from '../RestaurantCard'
+
 import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
+  inProgress: 'INPROGRESS',
 }
 
 class AllRestaurantsSection extends Component {
@@ -25,6 +29,7 @@ class AllRestaurantsSection extends Component {
   }
 
   getRestaurantsDetails = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {activePage} = this.state
 
     const jwtToken = Cookies.get('jwt_token')
@@ -136,12 +141,21 @@ class AllRestaurantsSection extends Component {
     )
   }
 
+  renderLoadingView = () => (
+    <div className="loader-container">
+      <Loader type="TailSpin" color="#f7931e" height={80} width={80} />
+    </div>
+  )
+
   renderRestaurantsDetails = () => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderRestaurantsSuccessView()
+
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
 
       default:
         return null
@@ -151,7 +165,6 @@ class AllRestaurantsSection extends Component {
   render() {
     return (
       <div>
-        <h1> HIIIII </h1>
         <div>{this.renderRestaurantsDetails()}</div>
       </div>
     )
