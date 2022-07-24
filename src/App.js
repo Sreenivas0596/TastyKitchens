@@ -10,7 +10,7 @@ import Cart from './components/Cart'
 import NotFound from './components/NotFound'
 import RestaurantContext from './RestaurantContext'
 
-const getLocalStoragefoodItemsList = () => {
+const getLocalStorageFoodItemsList = () => {
   const localStorageFoodCartItemsList = localStorage.getItem('cartData')
 
   const parsedLocalStorageCartList = JSON.parse(localStorageFoodCartItemsList)
@@ -22,7 +22,7 @@ const getLocalStoragefoodItemsList = () => {
 }
 
 class App extends Component {
-  state = {foodItemsList: getLocalStoragefoodItemsList()}
+  state = {foodItemsList: getLocalStorageFoodItemsList()}
 
   addFoodItems = foodItems => {
     const {foodItemsList} = this.state
@@ -31,21 +31,16 @@ class App extends Component {
     })
   }
 
-  onIncreaseQuantity = () => {
-    this.setState(prevState => ({quantity: prevState.quantity + 1}))
-  }
-
   render() {
     const {foodItemsList} = this.state
 
     localStorage.setItem('cartData', JSON.stringify(foodItemsList))
+
     return (
       <RestaurantContext.Provider
         value={{
-          quantity: 0,
           foodItemsList,
           addFoodItems: this.addFoodItems,
-          onIncreaseQuantity: this.onIncreaseQuantity,
         }}
       >
         <>
