@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="sns-container">
         <img
           src="https://res.cloudinary.com/sree7771/image/upload/v1658551419/Vector_1_agnf8v.png"
-          alt=""
+          alt="website-footer-logo"
           className="footer-img"
         />
         <h1 className="footer-heading"> Tasty Kitchens</h1>
@@ -21,12 +21,16 @@ export default function Footer() {
         The only thing we are serious about is food. Contact us soon
       </p>
       <div className="sns-container">
-        <div className="pinterest-img">
+        <div className="pinterest-img" testid="pintrest-social-icon">
           <FaPinterestSquare height={27} width={21} className="pin-img" />
         </div>
-        <FaInstagram className="insta-img" />
-        <FaTwitter className="twitter-img" />
-        <div className="facebook-img">
+        <div testid="instagram-social-icon">
+          <FaInstagram className="insta-img" />
+        </div>
+        <div testid="twitter-social-icon">
+          <FaTwitter className="twitter-img" />
+        </div>
+        <div className="facebook-img" testid="facebook-social-icon">
           <FaFacebookSquare className="fb-img" />
         </div>
       </div>

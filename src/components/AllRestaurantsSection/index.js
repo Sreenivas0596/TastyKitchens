@@ -5,10 +5,26 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
 import {RiArrowLeftSLine, RiArrowRightSLine} from 'react-icons/ri'
+import {BsSearch} from 'react-icons/bs'
 
 import RestaurantCard from '../RestaurantCard'
 
+import RestaurantsHeader from '../RestaurantsHeader'
+
 import './index.css'
+
+const sortByOptions = [
+  {
+    id: 0,
+    displayText: 'Highest',
+    value: 'Highest',
+  },
+  {
+    id: 2,
+    displayText: 'Lowest',
+    value: 'Lowest',
+  },
+]
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -22,6 +38,8 @@ class AllRestaurantsSection extends Component {
     allRestaurantsDetailsList: [],
     activePage: 1,
     totalActivePages: 0,
+    selectedSortByValue: sortByOptions[0].value,
+    searchInput: '',
   }
 
   componentDidMount() {
@@ -30,14 +48,14 @@ class AllRestaurantsSection extends Component {
 
   getRestaurantsDetails = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {activePage} = this.state
+    const {activePage, selectedSortByValue, searchInput} = this.state
 
     const jwtToken = Cookies.get('jwt_token')
     const LIMIT = 9
 
     const offset = (activePage - 1) * LIMIT
 
-    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}`
+    const url = `https://apis.ccbp.in/restaurants-list?search=${searchInput}&offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortByValue}`
 
     const options = {
       method: 'GET',
@@ -105,11 +123,49 @@ class AllRestaurantsSection extends Component {
     }
   }
 
+  updateSortByValue = value => {
+    this.setState({selectedSortByValue: value}, this.getRestaurantsDetails)
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  onSearchKeyDown = event => {
+    if (event.key === 'Enter') {
+      this.getRestaurantsDetails()
+    }
+  }
+
   renderRestaurantsSuccessView = () => {
-    const {allRestaurantsDetailsList, activePage, totalActivePages} = this.state
+    const {
+      allRestaurantsDetailsList,
+      activePage,
+      totalActivePages,
+      selectedSortByValue,
+      searchInput,
+    } = this.state
 
     return (
-      <div>
+      <div className="all-restaurants-section">
+        <RestaurantsHeader
+          sortByOptions={sortByOptions}
+          selectedSortByValue={selectedSortByValue}
+          updateSortByValue={this.updateSortByValue}
+        />
+        <div className="Search-container">
+          <div className="input-container">
+            <input
+              type="search"
+              value={searchInput}
+              className="input"
+              onChange={this.onChangeSearchInput}
+              onKeyDown={this.onSearchKeyDown}
+              placeholder="Search"
+            />
+            <BsSearch className="search" />
+          </div>
+        </div>
         <ul>
           {allRestaurantsDetailsList.map(eachRestaurant => (
             <RestaurantCard
@@ -123,16 +179,19 @@ class AllRestaurantsSection extends Component {
             type="button"
             onClick={this.onClickLeftButton}
             className="button"
+            testid="pagination-left-button"
           >
             <RiArrowLeftSLine className="arrow" />
           </button>
           <p className="page-number">
-            {activePage} of {totalActivePages}
+            <span testid="active-page-number">{activePage}</span> of
+            {totalActivePages}
           </p>
           <button
             type="button"
             onClick={this.onClickRightButton}
             className="button"
+            testid="pagination-right-button"
           >
             <RiArrowRightSLine className="arrow" />
           </button>
@@ -142,7 +201,7 @@ class AllRestaurantsSection extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" testid="restaurants-list-loader">
       <Loader type="TailSpin" color="#f7931e" height={80} width={80} />
     </div>
   )

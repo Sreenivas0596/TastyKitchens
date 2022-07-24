@@ -106,7 +106,7 @@ class LoginForm extends Component {
           <form className="form-container" onSubmit={this.onSubmitForm}>
             <img
               src="https://res.cloudinary.com/sree7771/image/upload/v1658312644/Frame_274_tph3zo.png"
-              alt=""
+              alt="website logo"
               className="tasty-kitchen-img"
             />
             <h1 className="tasty-kitchens-heading">Tasty Kitchens</h1>
@@ -123,7 +123,7 @@ class LoginForm extends Component {
         <div>
           <img
             src="https://res.cloudinary.com/sree7771/image/upload/v1658313468/Rectangle_1456_2_fh4w0q.png"
-            alt=""
+            alt="website login"
             className="img"
           />
         </div>

@@ -5,9 +5,9 @@ const CarouselCard = props => {
   const {imageUrl} = carouselData
 
   return (
-    <div>
-      <img src={imageUrl} alt="" className="carousel-img" />
-    </div>
+    <li className="carousel-list-item">
+      <img src={imageUrl} alt="offer" className="carousel-img" />
+    </li>
   )
 }
 

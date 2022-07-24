@@ -67,31 +67,35 @@ class Home extends Component {
       dots: true,
       slidesToShow: 1,
       slidesToScroll: 1,
+      autoplay: true,
+      speed: 500,
+      autoplaySpeed: 2000,
+      infinite: true,
     }
 
     return (
-      <div>
-        <Slider {...settings}>
-          {allHomeCarouselImagesList.map(eachCarousel => (
-            <CarouselCard carouselData={eachCarousel} key={eachCarousel.id} />
-          ))}
-        </Slider>
+      <div className="home-container">
         <div>
-          <h1 className="popular-rest-heading"> Popular Restaurants </h1>
-          <p className="description">
-            {' '}
-            Select your favourite restaurant special dish and make your day
-            happy{' '}
-          </p>
-          <hr className="header" />
+          <div>
+            <ul className="carousel-container">
+              <Slider {...settings}>
+                {allHomeCarouselImagesList.map(eachCarousel => (
+                  <CarouselCard
+                    carouselData={eachCarousel}
+                    key={eachCarousel.id}
+                  />
+                ))}
+              </Slider>
+            </ul>
+          </div>
+          <AllRestaurantsSection />
         </div>
-        <AllRestaurantsSection />
       </div>
     )
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" testid="restaurants-offers-loader">
       <Loader type="TailSpin" color="#f7931e" height={80} width={80} />
     </div>
   )

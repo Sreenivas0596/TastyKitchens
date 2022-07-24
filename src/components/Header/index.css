@@ -37,6 +37,7 @@
   outline: none;
   border-width: 0px;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .home-heading {
@@ -57,6 +58,7 @@
   letter-spacing: -0.355556px;
 
   color: #f7931e;
+  list-style-type: none;
 }
 
 .cart-heading {
@@ -80,6 +82,7 @@
 
   color: #334155;
   margin-left: 10px;
+  list-style-type: none;
 }
 
 .header-container {
@@ -89,7 +92,7 @@
   bottom: 81.51%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   /* Light / blue-gray / 50 */
@@ -105,4 +108,18 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.header-tast-heading {
+  display: flex;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1110px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }

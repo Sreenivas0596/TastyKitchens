@@ -133,7 +133,7 @@ class RestaurantDetails extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" testid="restaurant-details-loader">
       <Loader type="TailSpin" color="#f7931e" height={80} width={120} />
     </div>
   )
