@@ -1,13 +1,28 @@
-.carousel-img {
+.carousel-container {
   width: 100%;
-  height: 60vh;
-}
-
-.carousel-list-item {
   list-style-type: none;
   display: flex;
-  width: 90%;
-  justify-content: flex-start;
+  padding-left: 0px;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 250px;
+}
+
+@media screen and (min-width: 772px) {
+  .carousel-img {
+    height: 350px;
+  }
+}
+
+.slider {
+  width: 100%;
+}
+
+.loader-position {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-left: 110px;
 }

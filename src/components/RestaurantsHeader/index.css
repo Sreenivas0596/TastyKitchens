@@ -61,3 +61,34 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 770px) {
+  .filters-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
+
+.description {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  /* or 200% */
+
+  /* Light / blue-gray / 500 */
+
+  color: #64748b;
+}
+
+.popular-rest-heading {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  /* identical to box height, or 133% */
+
+  color: #183b56;
+}

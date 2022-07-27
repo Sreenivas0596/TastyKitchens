@@ -1,10 +1,12 @@
 import React from 'react'
 
 const RestaurantContext = React.createContext({
-  quantity: 0,
-  onIncreaseQuantity: () => {},
-  foodItemsList: {},
-  addFoodItems: () => {},
+  cartList: [],
+  removeAllCartItems: () => {},
+  addCartItem: () => {},
+  removeCartItem: () => {},
+  incrementCartItemQuantity: () => {},
+  decrementCartItemQuantity: () => {},
 })
 
 export default RestaurantContext

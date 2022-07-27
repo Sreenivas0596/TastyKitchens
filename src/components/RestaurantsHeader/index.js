@@ -15,12 +15,12 @@ const RestaurantsHeader = props => {
         <h1 className="popular-rest-heading"> Popular Restaurants </h1>
         <div className="filters-container">
           <p className="description">
-            Select your favourite restaurant special dish and make your day
-            happy
+            Select Your favourite restaurant special dish and make your day
+            happy...
           </p>
           <div className="select-container">
             <BsFilterLeft width={24} height={24} className="filter" />
-            <h1 className="filter-heading">Sort by</h1>
+            <p className="filter-heading">Sort By</p>
             <select
               value={selectedSortByValue}
               onChange={onChangeOption}

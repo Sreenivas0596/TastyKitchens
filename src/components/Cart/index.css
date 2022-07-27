@@ -1,15 +1,10 @@
 .no-orders {
-  left: 42.43%;
-  right: 42.36%;
-  top: 63.77%;
-  bottom: 31.54%;
-
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 500;
-  font-size: 32px;
-  line-height: 48px;
-  /* identical to box height, or 150% */
+  font-size: 20px;
+  line-height: 32px;
+  /* identical to box height, or 160% */
 
   text-align: center;
 
@@ -18,13 +13,31 @@
   color: #1e293b;
 }
 
+@media screen and (min-width: 772px) {
+  .no-orders {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+
+    text-align: center;
+
+    /* Light / blue-gray / 800 */
+
+    color: #1e293b;
+  }
+}
+
 .cart-img {
-  width: 425px;
-  height: 370px;
-  left: 35.28%;
-  right: 35.21%;
-  top: 23.24%;
-  bottom: 40.92%;
+  width: 203px;
+  height: 175px;
+}
+
+@media screen and (min-width: 772px) {
+  .cart-img {
+    width: 425px;
+    height: 370px;
+  }
 }
 
 .cart-img-container {
@@ -35,23 +48,30 @@
 }
 
 .cart-description {
-  left: 37.15%;
-  right: 37.08%;
-  top: 69.63%;
-  bottom: 28.03%;
-
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  /* identical to box height, or 150% */
+  font-size: 14px;
 
   text-align: center;
 
   /* Light / blue-gray / 500 */
 
   color: #64748b;
+}
+@media screen and (min-width: 772px) {
+  .cart-description {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+
+    text-align: center;
+
+    /* Light / blue-gray / 500 */
+
+    color: #64748b;
+  }
 }
 
 .order-now-button {
@@ -117,7 +137,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 24px;
+
   /* identical to box height, or 120% */
 
   letter-spacing: 0.2px;
@@ -241,4 +261,19 @@
   height: 40px;
   width: 120px;
   color: #ffffff;
+}
+
+.cart-items-added-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+  width: 90%;
+  max-width: 1200px;
+  min-height: 640px;
+  background: #f8fafc;
+
+  padding: 20px;
 }

@@ -9,7 +9,7 @@ import './index.css'
 export default function Footer() {
   return (
     <div className="footer-bg-container">
-      <div className="sns-container">
+      <div className="footer-img-container">
         <img
           src="https://res.cloudinary.com/sree7771/image/upload/v1658551419/Vector_1_agnf8v.png"
           alt="website-footer-logo"
@@ -17,22 +17,14 @@ export default function Footer() {
         />
         <h1 className="footer-heading"> Tasty Kitchens</h1>
       </div>
-      <p className="footer-description">
-        The only thing we are serious about is food. Contact us soon
+      <p className="paragraph">
+        The only thing we are serious about is food. Contact us on
       </p>
       <div className="sns-container">
-        <div className="pinterest-img" testid="pintrest-social-icon">
-          <FaPinterestSquare height={27} width={21} className="pin-img" />
-        </div>
-        <div testid="instagram-social-icon">
-          <FaInstagram className="insta-img" />
-        </div>
-        <div testid="twitter-social-icon">
-          <FaTwitter className="twitter-img" />
-        </div>
-        <div className="facebook-img" testid="facebook-social-icon">
-          <FaFacebookSquare className="fb-img" />
-        </div>
+        <FaPinterestSquare className="sns-img" testid="pintrest-social-icon" />
+        <FaInstagram className="sns-img" testid="instagram-social-icon" />
+        <FaTwitter className="sns-img" testid="twitter-social-icon" />
+        <FaFacebookSquare className="sns-img" testid="facebook-social-icon" />
       </div>
     </div>
   )

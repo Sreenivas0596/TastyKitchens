@@ -1,28 +1,31 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {BsDashSquare, BsPlusSquare} from 'react-icons/bs'
-import {BiRupee} from 'react-icons/bi'
-import Header from '../Header'
-import Footer from '../Footer'
+
+import CartItemsCard from '../CartItemsCard'
+import CartTotal from '../CartTotal'
 
 import './index.css'
+import RestaurantContext from '../../RestaurantContext'
 
 class CartItems extends Component {
-  state = {isOrderPlaced: false}
+  state = {
+    isOrderPlaced: false,
+  }
 
-  onClickPlaceOrder = () => {
-    this.setState({isOrderPlaced: true})
+  orderPlaced = () => {
+    this.setState(prevState => ({isOrderPlaced: !prevState.isOrderPlaced}))
   }
 
   render() {
-    const {foodItemsList, quantity} = this.props
     const {isOrderPlaced} = this.state
-
     return (
-      <div>
-        {isOrderPlaced ? (
-          <div>
-            <Header />
+      <RestaurantContext.Consumer>
+        {value => {
+          const {cartList, removeAllCartItems} = value
+          const onClickRemoveAllBtn = () => {
+            removeAllCartItems()
+          }
+          return isOrderPlaced ? (
             <div className="payment-container">
               <img
                 src="https://res.cloudinary.com/sree7771/image/upload/v1658661871/Vector_4_bzptf7.png"
@@ -41,55 +44,41 @@ class CartItems extends Component {
                 </button>
               </Link>
             </div>
-            <Footer />
-          </div>
-        ) : (
-          <div className="cart-list-container">
-            <Header />
-            <div className="cart-list-items-container">
-              <div className="cart-lis-items">
-                <p>Item</p>
-                <div className="cart-list-quantity-price-container">
-                  <p>Quantity</p>
-                  <p>Price</p>
+          ) : (
+            <div className="cart-content-container">
+              <div className="cart-card-details">
+                <div className="cart-heading-remove-all-btn">
+                  <h1 className="cart-heading">My Cart</h1>
+                  <button
+                    type="button"
+                    className="remove-all-btn"
+                    onClick={onClickRemoveAllBtn}
+                  >
+                    Remove All
+                  </button>
                 </div>
+                <div className="desktop-cart-header">
+                  <h1 className="cart-header-item">Item</h1>
+
+                  <h1 className="cart-header-quantity">Quantity</h1>
+                  <h1 className="cart-header-price">price</h1>
+                  <h1 className="cart-header-remove">remove</h1>
+                </div>
+                <ul className="cart-list">
+                  {cartList.map(eachItem => (
+                    <CartItemsCard
+                      key={eachItem.id}
+                      cartItem={eachItem}
+                      value={value}
+                    />
+                  ))}
+                </ul>
               </div>
-              <ul>
-                {foodItemsList.map(eachCartItem => (
-                  <li className="food-cart-item-container" testid="cart-item">
-                    <div>
-                      <img
-                        src={eachCartItem.imageUrl}
-                        alt={eachCartItem.name}
-                        className="cart-item-img"
-                      />
-                      <h1 className="food-cart-name">{eachCartItem.name}</h1>
-                    </div>
-                    <div className="plus-minus-container">
-                      <BsDashSquare className="decrement" />
-                      <p className="food-cart-quantity">{quantity}</p>
-                      <BsPlusSquare className="increment" />
-                    </div>
-                    <div className="cost-container">
-                      <BiRupee className="food-cart-rupee" />
-                      <p className="food-cart-cost">{eachCartItem.cost}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <p className="order-total">Order total:</p>
-              <button
-                type="button"
-                className="place-order-button"
-                onClick={this.onClickPlaceOrder}
-              >
-                Place Order
-              </button>
+              <CartTotal orderPlaced={this.orderPlaced} />
             </div>
-            <Footer />
-          </div>
-        )}
-      </div>
+          )
+        }}
+      </RestaurantContext.Consumer>
     )
   }
 }

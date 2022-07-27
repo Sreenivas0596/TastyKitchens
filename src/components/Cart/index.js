@@ -12,26 +12,26 @@ class Cart extends Component {
     return (
       <RestaurantContext.Consumer>
         {value => {
-          const {foodItemsList, quantity} = value
+          const {cartList} = value
 
-          const foodItemsListLength = foodItemsList.length
+          const foodItemsListLength = cartList.length
 
           if (foodItemsListLength === 0) {
             return (
-              <div>
+              <div className="cart-items-added-container">
                 <Header />
                 <div className="cart-img-container">
                   <div>
                     <img
                       src="https://res.cloudinary.com/sree7771/image/upload/v1658492287/cooking_1_dxzxcl.png"
-                      alt=""
+                      alt="empty cart"
                       className="cart-img"
                     />
                   </div>
-                  <h1 className="no-orders">No Orders Yet </h1>
+                  <h1 className="no-orders">No Order Yet! </h1>
                   <p className="cart-description">
                     {' '}
-                    Your cart is empty.Add something from the menu
+                    Your cart is empty. Add something from the menu.
                   </p>
                   <Link to="/">
                     <button type="button" className="order-now-button">
@@ -43,7 +43,15 @@ class Cart extends Component {
               </div>
             )
           }
-          return <CartItems foodItemsList={foodItemsList} quantity={quantity} />
+          return (
+            <div>
+              <Header />
+              <div className="cart-items-added-container">
+                <CartItems foodItemsList={cartList} />
+              </div>
+              <Footer />
+            </div>
+          )
         }}
       </RestaurantContext.Consumer>
     )

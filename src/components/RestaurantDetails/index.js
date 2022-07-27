@@ -1,7 +1,8 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {AiOutlineStar} from 'react-icons/ai'
+import {ImStarFull} from 'react-icons/im'
+import {FaRupeeSign} from 'react-icons/fa'
 import Header from '../Header'
 import FoodItemCard from '../FoodItemCard'
 import Footer from '../Footer'
@@ -9,15 +10,9 @@ import './index.css'
 
 const url = 'https://apis.ccbp.in/restaurants-list/'
 
-const apiStatusConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  inProgress: 'INPROGRESS',
-}
-
 class RestaurantDetails extends Component {
   state = {
-    apiStatus: apiStatusConstants.initial,
+    isLoading: true,
     restaurantDetailsList: {},
     foodItemsDetailsList: [],
   }
@@ -27,7 +22,6 @@ class RestaurantDetails extends Component {
   }
 
   getRestaurantDetails = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {match} = this.props
     const {params} = match
 
@@ -46,38 +40,36 @@ class RestaurantDetails extends Component {
     const response = await fetch(`${url}${id}`, options)
     console.log(response.ok)
 
-    if (response.ok) {
-      const data = await response.json()
-      console.log(data)
+    const data = await response.json()
+    console.log(data)
 
-      const updateData = {
-        costForTwo: data.cost_for_two,
-        cuisine: data.cuisine,
-        id: data.id,
-        itemsCount: data.items_count,
-        imageUrl: data.image_url,
-        location: data.location,
-        name: data.name,
-        opensAt: data.opens_at,
-        rating: data.rating,
-        reviewsCount: data.reviews_count,
-      }
-
-      const foodUpdateData = data.food_items.map(eachItem => ({
-        cost: eachItem.cost,
-        foodType: eachItem.food_type,
-        id: eachItem.id,
-        imageUrl: eachItem.image_url,
-        name: eachItem.name,
-        rating: eachItem.rating,
-      }))
-
-      this.setState({
-        apiStatus: apiStatusConstants.success,
-        restaurantDetailsList: updateData,
-        foodItemsDetailsList: foodUpdateData,
-      })
+    const updateData = {
+      costForTwo: data.cost_for_two,
+      cuisine: data.cuisine,
+      id: data.id,
+      itemsCount: data.items_count,
+      imageUrl: data.image_url,
+      location: data.location,
+      name: data.name,
+      opensAt: data.opens_at,
+      rating: data.rating,
+      reviewsCount: data.reviews_count,
     }
+
+    const foodUpdateData = data.food_items.map(eachItem => ({
+      cost: eachItem.cost,
+      foodType: eachItem.food_type,
+      id: eachItem.id,
+      imageUrl: eachItem.image_url,
+      name: eachItem.name,
+      rating: eachItem.rating,
+    }))
+
+    this.setState({
+      isLoading: false,
+      restaurantDetailsList: updateData,
+      foodItemsDetailsList: foodUpdateData,
+    })
   }
 
   renderRestaurantDetailsSuccessView = () => {
@@ -96,7 +88,11 @@ class RestaurantDetails extends Component {
     return (
       <div>
         <div className="image-container">
-          <img src={imageUrl} alt="" className="restaurant-item-img" />
+          <img
+            src={imageUrl}
+            alt="restaurant"
+            className="restaurant-item-img"
+          />
           <div className="rest-description">
             <h1 className="restaurant-details-name">{name}</h1>
             <p className="rest-details-cuisine">{cuisine}</p>
@@ -104,14 +100,15 @@ class RestaurantDetails extends Component {
             <div className="rest-rate-cost-container">
               <div>
                 <div className="rest-star-rating-container">
-                  <AiOutlineStar className="rest-star" />
+                  <ImStarFull className="rest-star" />
                   <p className="rest-rating">{rating}</p>
                 </div>
-                <p className="rest-ratings">{reviewsCount}ratings</p>
+                <p className="rest-ratings">{reviewsCount}+ ratings</p>
               </div>{' '}
               <hr />
               <div>
-                <div>
+                <div className="cost-price-rupee-container">
+                  <FaRupeeSign className="rest-fa-rupee" />
                   <p className="rest-cost">{costForTwo}</p>
                 </div>
                 <p className="rest-cost-two">Cost for two</p>
@@ -120,7 +117,7 @@ class RestaurantDetails extends Component {
           </div>
         </div>
 
-        <ul>
+        <ul className="food-item-card-container">
           {foodItemsDetailsList.map(eachFoodItem => (
             <FoodItemCard
               key={eachFoodItem.id}
@@ -133,31 +130,25 @@ class RestaurantDetails extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="restaurant-details-loader">
+    <div
+      className="loader-container loader-position"
+      testid="restaurant-details-loader"
+    >
       <Loader type="TailSpin" color="#f7931e" height={80} width={120} />
     </div>
   )
 
-  renderRestaurantDetails = () => {
-    const {apiStatus} = this.state
-
-    switch (apiStatus) {
-      case apiStatusConstants.success:
-        return this.renderRestaurantDetailsSuccessView()
-
-      case apiStatusConstants.inProgress:
-        return this.renderLoadingView()
-
-      default:
-        return null
-    }
-  }
-
   render() {
+    const {isLoading} = this.state
+
     return (
       <div>
         <Header />
-        <div>{this.renderRestaurantDetails()}</div>
+        <div>
+          {isLoading
+            ? this.renderLoadingView()
+            : this.renderRestaurantDetailsSuccessView()}
+        </div>
         <Footer />
       </div>
     )

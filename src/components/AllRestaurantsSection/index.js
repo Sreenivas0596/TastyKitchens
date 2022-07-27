@@ -26,19 +26,13 @@ const sortByOptions = [
   },
 ]
 
-const apiStatusConstants = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  inProgress: 'INPROGRESS',
-}
-
 class AllRestaurantsSection extends Component {
   state = {
-    apiStatus: apiStatusConstants.initial,
+    isLoading: true,
     allRestaurantsDetailsList: [],
     activePage: 1,
     totalActivePages: 0,
-    selectedSortByValue: sortByOptions[0].value,
+    selectedSortByValue: sortByOptions[1].value,
     searchInput: '',
   }
 
@@ -47,7 +41,6 @@ class AllRestaurantsSection extends Component {
   }
 
   getRestaurantsDetails = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {activePage, selectedSortByValue, searchInput} = this.state
 
     const jwtToken = Cookies.get('jwt_token')
@@ -68,33 +61,31 @@ class AllRestaurantsSection extends Component {
 
     console.log(response.ok)
 
-    if (response.ok) {
-      const data = await response.json()
-      console.log(data)
+    const data = await response.json()
+    console.log(data)
 
-      const totalRestaurants = data.total
+    const totalRestaurants = data.total
 
-      const totalActivePages = Math.ceil(totalRestaurants / LIMIT)
+    const totalActivePages = Math.ceil(totalRestaurants / LIMIT)
 
-      console.log(totalActivePages)
+    console.log(totalActivePages)
 
-      const updateData = data.restaurants.map(eachRestaurant => ({
-        imageUrl: eachRestaurant.image_url,
-        name: eachRestaurant.name,
-        id: eachRestaurant.id,
-        cuisine: eachRestaurant.cuisine,
-        userRating: {
-          rating: eachRestaurant.user_rating.rating,
-          totalReviews: eachRestaurant.user_rating.total_reviews,
-        },
-      }))
+    const updateData = data.restaurants.map(eachRestaurant => ({
+      imageUrl: eachRestaurant.image_url,
+      name: eachRestaurant.name,
+      id: eachRestaurant.id,
+      cuisine: eachRestaurant.cuisine,
+      userRating: {
+        rating: eachRestaurant.user_rating.rating,
+        totalReviews: eachRestaurant.user_rating.total_reviews,
+      },
+    }))
 
-      this.setState({
-        allRestaurantsDetailsList: updateData,
-        apiStatus: apiStatusConstants.success,
-        totalActivePages,
-      })
-    }
+    this.setState({
+      allRestaurantsDetailsList: updateData,
+      isLoading: false,
+      totalActivePages,
+    })
   }
 
   onClickRightButton = () => {
@@ -146,28 +137,33 @@ class AllRestaurantsSection extends Component {
       searchInput,
     } = this.state
 
+    const filteredRestaurantsList = allRestaurantsDetailsList.filter(
+      eachRestaurant =>
+        eachRestaurant.name.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+
     return (
-      <div className="all-restaurants-section">
+      <div className="home-restaurants-container">
         <RestaurantsHeader
           sortByOptions={sortByOptions}
           selectedSortByValue={selectedSortByValue}
           updateSortByValue={this.updateSortByValue}
         />
-        <div className="Search-container">
-          <div className="input-container">
-            <input
-              type="search"
-              value={searchInput}
-              className="input"
-              onChange={this.onChangeSearchInput}
-              onKeyDown={this.onSearchKeyDown}
-              placeholder="Search"
-            />
-            <BsSearch className="search" />
-          </div>
+
+        <div className="input-home-search-container">
+          <input
+            type="search"
+            value={searchInput}
+            className="input-home"
+            onChange={this.onChangeSearchInput}
+            onKeyDown={this.onSearchKeyDown}
+            placeholder="Search"
+          />
+          <BsSearch className="search" />
         </div>
-        <ul>
-          {allRestaurantsDetailsList.map(eachRestaurant => (
+
+        <ul className="restaurants-list-container">
+          {filteredRestaurantsList.map(eachRestaurant => (
             <RestaurantCard
               restaurantsDetails={eachRestaurant}
               key={eachRestaurant.id}
@@ -201,30 +197,21 @@ class AllRestaurantsSection extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="loader-container" testid="restaurants-list-loader">
+    <div
+      className="loader-container loader-position"
+      testid="restaurants-list-loader"
+    >
       <Loader type="TailSpin" color="#f7931e" height={80} width={80} />
     </div>
   )
 
-  renderRestaurantsDetails = () => {
-    const {apiStatus} = this.state
-
-    switch (apiStatus) {
-      case apiStatusConstants.success:
-        return this.renderRestaurantsSuccessView()
-
-      case apiStatusConstants.inProgress:
-        return this.renderLoadingView()
-
-      default:
-        return null
-    }
-  }
-
   render() {
+    const {isLoading} = this.state
     return (
       <div>
-        <div>{this.renderRestaurantsDetails()}</div>
+        {isLoading
+          ? this.renderLoadingView()
+          : this.renderRestaurantsSuccessView()}
       </div>
     )
   }

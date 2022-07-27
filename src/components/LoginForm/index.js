@@ -9,6 +9,7 @@ class LoginForm extends Component {
     passwordInput: '',
     submitError: false,
     errorMessage: '',
+    password: 'password',
   }
 
   onChangeUsername = event => {
@@ -17,6 +18,10 @@ class LoginForm extends Component {
 
   onChangePassword = event => {
     this.setState({passwordInput: event.target.value})
+  }
+
+  onClickCheckBox = event => {
+    this.setState({password: event.target.checked ? 'text' : 'password'})
   }
 
   onSubmitSuccess = jwtToken => {
@@ -74,7 +79,7 @@ class LoginForm extends Component {
   }
 
   renderPassword = () => {
-    const {passwordInput} = this.state
+    const {passwordInput, password} = this.state
 
     return (
       <>
@@ -83,7 +88,7 @@ class LoginForm extends Component {
         </label>
         <input
           id="password"
-          type="password"
+          type={password}
           className="input"
           value={passwordInput}
           onChange={this.onChangePassword}
@@ -102,31 +107,45 @@ class LoginForm extends Component {
     }
     return (
       <div className="tasty-container">
-        <div className="from-bg-container">
+        <img
+          src="https://res.cloudinary.com/sree7771/image/upload/v1658726346/Rectangle_1457_bo2dln.png"
+          className="login-mobile-image"
+          alt="website login"
+        />
+        <div className="login-form-bg-container">
           <form className="form-container" onSubmit={this.onSubmitForm}>
             <img
               src="https://res.cloudinary.com/sree7771/image/upload/v1658312644/Frame_274_tph3zo.png"
+              className="login-website-logo-img"
               alt="website logo"
-              className="tasty-kitchen-img"
             />
-            <h1 className="tasty-kitchens-heading">Tasty Kitchens</h1>
-            <h1 className="login-heading"> Login </h1>
-
+            <h1 className="tasty-kitchen-heading">Tasty Kitchens</h1>
+            <h1 className="login">Login</h1>
             <div className="input-container">{this.renderUsername()}</div>
-            <div className="input-container"> {this.renderPassword()}</div>
+            <div className="input-container">{this.renderPassword()}</div>
+
+            <div className="checkbox-container">
+              <input
+                type="checkbox"
+                onClick={this.onClickCheckBox}
+                id="checkbox"
+              />
+
+              <label htmlFor="checkbox" className="show-password">
+                Show Password
+              </label>
+            </div>
             <button type="submit" className="login-button">
               Login
             </button>
             {submitError && <p className="error-message">*{errorMessage}</p>}
           </form>
         </div>
-        <div>
-          <img
-            src="https://res.cloudinary.com/sree7771/image/upload/v1658313468/Rectangle_1456_2_fh4w0q.png"
-            alt="website login"
-            className="img"
-          />
-        </div>
+        <img
+          src="https://res.cloudinary.com/sree7771/image/upload/v1658233857/Rectangle_1456_1_y1bshj.png"
+          className="login-desktop-image"
+          alt="website login"
+        />
       </div>
     )
   }

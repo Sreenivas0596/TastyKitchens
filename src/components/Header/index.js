@@ -1,6 +1,12 @@
 import {withRouter, Link} from 'react-router-dom'
+import Popup from 'reactjs-popup'
+
 import Cookies from 'js-cookie'
+import {AiOutlineCloseCircle} from 'react-icons/ai'
+import {GiHamburgerMenu} from 'react-icons/gi'
+
 import './index.css'
+import RestaurantContext from '../../RestaurantContext'
 
 const Header = props => {
   const onClickLogout = () => {
@@ -10,26 +16,48 @@ const Header = props => {
     history.replace('/login')
   }
 
+  const cartCount = () => (
+    <RestaurantContext.Consumer>
+      {value => {
+        const {cartList} = value
+        const cartItemsCount = cartList.length
+        console.log(cartList)
+
+        return (
+          <>
+            {cartItemsCount > 0 && (
+              <span className="cart-count-badge">{cartList.length}</span>
+            )}
+          </>
+        )
+      }}
+    </RestaurantContext.Consumer>
+  )
+
   return (
     <nav className="header-container">
       <div className="nav-content">
         <div className="img-container">
           <Link to="/" className="restaurant-link">
-            <div className="header-tast-heading">
+            <div className="header-taste-heading">
               <img
                 src="https://res.cloudinary.com/sree7771/image/upload/v1658312644/Frame_274_tph3zo.png"
                 alt="website logo"
+                className="header-hat-heading"
               />
               <h1 className="tasty-heading"> Tasty Kitchens</h1>
             </div>
           </Link>
         </div>
-        <ul className="home-header-container">
+        <ul className="home-header-desktop-container">
           <Link to="/" className="restaurant-link">
             <li className="home-heading"> Home </li>
           </Link>
           <Link to="/cart" className="restaurant-link">
-            <li className="cart-heading"> Cart </li>
+            <li className="cart-heading">
+              {' '}
+              Cart <span className="header-cart-count">{cartCount()}</span>{' '}
+            </li>
           </Link>
           <button
             type="button"
@@ -39,6 +67,42 @@ const Header = props => {
             Logout
           </button>
         </ul>
+        <div className="header-mobile-container">
+          <Popup
+            trigger={
+              <button type="button" className="hamburger-button">
+                <GiHamburgerMenu size={25} className="hamburger" />
+              </button>
+            }
+            className="pop-up-container"
+          >
+            {close => (
+              <div className="modal-container">
+                <div className="nav-link-container">
+                  <Link to="/" className="restaurant-link">
+                    <p className="home-heading">Home</p>
+                  </Link>
+                  <Link to="/cart" className="restaurant-link">
+                    <p className="cart-pop-heading">
+                      Cart
+                      <span className="header-cart-count">{cartCount()}</span>
+                    </p>
+                  </Link>
+                  <button
+                    type="button"
+                    className="logout-pop-button"
+                    onClick={onClickLogout}
+                  >
+                    Logout
+                  </button>
+                </div>
+                <button type="button" className="close-button">
+                  <AiOutlineCloseCircle size={18} onClick={() => close()} />
+                </button>
+              </div>
+            )}
+          </Popup>
+        </div>
       </div>
     </nav>
   )

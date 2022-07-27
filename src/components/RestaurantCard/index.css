@@ -1,36 +1,43 @@
 .restaurant-img {
-  width: 160px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
 
   border-radius: 8px;
 }
 
 .restaurant-name {
-  font-family: 'DM Sans';
+  font-family: DM Sans;
   font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-
-  /* identical to box height, or 133% */
-
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
   letter-spacing: 0.2px;
-
-  /* Light / blue-gray / 700 */
-
   color: #334155;
+  margin: 0px;
+}
+
+@media screen and (min-width: 772px) {
+  .restaurant-img {
+    width: 160px;
+  }
+  .restaurant-name {
+    font-size: 16px;
+  }
 }
 
 .cuisine {
   font-family: 'DM Sans';
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 14px;
+  line-height: 24px;
 
   /* identical to box height, or 171% */
 
   /* Light / blue-gray / 500 */
 
   color: #64748b;
+  margin: 0px;
 }
 
 .star {
@@ -64,23 +71,32 @@
 }
 
 .restaurant-description {
-  width: 160px;
-  height: 80px;
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
 }
 
 .restaurant-list {
   display: flex;
+  align-items: center;
+  width: 300px;
+  height: 120px;
+  margin-right: 20px;
   margin-bottom: 20px;
-  max-width: 400px;
-  min-height: 170px;
-  list-style-type: none;
+}
+
+@media screen and (min-width: 772px) {
+  .restaurant-list {
+    width: 360px;
+  }
 }
 
 .ratings-container {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  margin: 0px;
+  line-height: 32px;
 }
 
 .restaurant-link {
