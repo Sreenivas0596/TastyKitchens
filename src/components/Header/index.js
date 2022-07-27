@@ -34,6 +34,15 @@ const Header = props => {
     </RestaurantContext.Consumer>
   )
 
+  const getColor = activeTab => {
+    const {history} = props
+
+    if (history.location.pathname === activeTab) {
+      return '#f7931e'
+    }
+    return '#334155'
+  }
+
   return (
     <nav className="header-container">
       <div className="nav-content">
@@ -51,12 +60,14 @@ const Header = props => {
         </div>
         <ul className="home-header-desktop-container">
           <Link to="/" className="restaurant-link">
-            <li className="home-heading"> Home </li>
+            <li className="home-heading" style={{color: getColor('/')}}>
+              {' '}
+              Home{' '}
+            </li>
           </Link>
           <Link to="/cart" className="restaurant-link">
-            <li className="cart-heading">
-              {' '}
-              Cart <span className="header-cart-count">{cartCount()}</span>{' '}
+            <li className="cart-heading" style={{color: getColor('/cart')}}>
+              Cart <span className="count-heading">{cartCount()}</span>{' '}
             </li>
           </Link>
           <button
@@ -74,18 +85,22 @@ const Header = props => {
                 <GiHamburgerMenu size={25} className="hamburger" />
               </button>
             }
-            className="pop-up-container"
           >
             {close => (
               <div className="modal-container">
                 <div className="nav-link-container">
                   <Link to="/" className="restaurant-link">
-                    <p className="home-pop-heading">Home</p>
+                    <p className="home-heading" style={{color: getColor('/')}}>
+                      Home
+                    </p>
                   </Link>
                   <Link to="/cart" className="restaurant-link">
-                    <p className="cart-pop-heading">
+                    <p
+                      className="home-heading"
+                      style={{color: getColor('/cart')}}
+                    >
                       Cart
-                      <span className="header-cart-count">{cartCount()}</span>
+                      <span className="count-heading">{cartCount()}</span>
                     </p>
                   </Link>
                   <button

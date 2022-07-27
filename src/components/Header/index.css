@@ -73,7 +73,6 @@
 
   letter-spacing: -0.355556px;
 
-  color: #f7931e;
   list-style-type: none;
 }
 
@@ -81,7 +80,7 @@
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
 
   /* identical to box height, or 162% */
 
@@ -94,7 +93,7 @@
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
 
   /* identical to box height, or 162% */
 
@@ -102,25 +101,7 @@
 
   /* Light / blue-gray / 700 */
 
-  color: #334155;
   margin-left: 10px;
-  list-style-type: none;
-}
-
-.cart-pop-heading {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-
-  /* identical to box height, or 162% */
-
-  letter-spacing: -0.355556px;
-
-  /* Light / blue-gray / 700 */
-
-  color: #334155;
-
   list-style-type: none;
 }
 
@@ -201,13 +182,9 @@
   }
 }
 
-.pop-up-container {
-  display: flex;
-}
-
 .header-hat-heading {
-  width: 33px;
-  height: 33px;
+  width: 43px;
+  height: 43px;
 }
 
 @media screen and (min-width: 772px) {
@@ -231,4 +208,29 @@
   background-color: transparent;
   outline: none;
   border-width: 0px;
+}
+
+.modal-container {
+  padding: 10px;
+  margin-top: 0px;
+  background: #e5e5e5;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.count-heading {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  color: blue;
+
+  /* identical to box height, or 162% */
+
+  letter-spacing: -0.355556px;
+
+  /* Light / blue-gray / 700 */
+
+  margin-left: 3px;
+  list-style-type: none;
 }
