@@ -206,8 +206,15 @@
 }
 
 .header-hat-heading {
-  width: 53px;
-  height: 43px;
+  width: 33px;
+  height: 33px;
+}
+
+@media screen and (min-width: 772px) {
+  .header-hat-heading {
+    width: 53px;
+    height: 43px;
+  }
 }
 
 .header-cart-count {

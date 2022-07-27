@@ -9,7 +9,6 @@ class LoginForm extends Component {
     passwordInput: '',
     submitError: false,
     errorMessage: '',
-    password: 'password',
   }
 
   onChangeUsername = event => {
@@ -18,10 +17,6 @@ class LoginForm extends Component {
 
   onChangePassword = event => {
     this.setState({passwordInput: event.target.value})
-  }
-
-  onClickCheckBox = event => {
-    this.setState({password: event.target.checked ? 'text' : 'password'})
   }
 
   onSubmitSuccess = jwtToken => {
@@ -79,7 +74,7 @@ class LoginForm extends Component {
   }
 
   renderPassword = () => {
-    const {passwordInput, password} = this.state
+    const {passwordInput} = this.state
 
     return (
       <>
@@ -88,7 +83,7 @@ class LoginForm extends Component {
         </label>
         <input
           id="password"
-          type={password}
+          type="password"
           className="input"
           value={passwordInput}
           onChange={this.onChangePassword}
@@ -110,7 +105,7 @@ class LoginForm extends Component {
         <img
           src="https://res.cloudinary.com/sree7771/image/upload/v1658726346/Rectangle_1457_bo2dln.png"
           className="login-mobile-image"
-          alt="website login"
+          alt="website logo"
         />
         <div className="login-form-bg-container">
           <form className="form-container" onSubmit={this.onSubmitForm}>
@@ -124,17 +119,6 @@ class LoginForm extends Component {
             <div className="input-container">{this.renderUsername()}</div>
             <div className="input-container">{this.renderPassword()}</div>
 
-            <div className="checkbox-container">
-              <input
-                type="checkbox"
-                onClick={this.onClickCheckBox}
-                id="checkbox"
-              />
-
-              <label htmlFor="checkbox" className="show-password">
-                Show Password
-              </label>
-            </div>
             <button type="submit" className="login-button">
               Login
             </button>

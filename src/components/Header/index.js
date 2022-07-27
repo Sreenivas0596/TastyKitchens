@@ -80,7 +80,7 @@ const Header = props => {
               <div className="modal-container">
                 <div className="nav-link-container">
                   <Link to="/" className="restaurant-link">
-                    <p className="home-heading">Home</p>
+                    <p className="home-pop-heading">Home</p>
                   </Link>
                   <Link to="/cart" className="restaurant-link">
                     <p className="cart-pop-heading">

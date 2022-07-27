@@ -86,7 +86,7 @@
   border: none;
 }
 
-.cart-content-container {
+.cart-items-container {
   display: flex;
   flex-direction: column;
   width: 100%;

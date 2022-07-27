@@ -57,10 +57,9 @@ const CartItem = props => (
               <div className="cart-price-remove-container">
                 <p className="cart-total-price">
                   <span>
-                    <FaRupeeSign color="#616E7C" size={12} />
+                    <FaRupeeSign size={12} />
                   </span>{' '}
-                  {cost}
-                  /-
+                  {cost}/-
                 </p>
               </div>
               <div className="button-container">
