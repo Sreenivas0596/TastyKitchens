@@ -5,7 +5,7 @@ import {MdDelete} from 'react-icons/md'
 import './index.css'
 import RestaurantContext from '../../RestaurantContext'
 
-const CartItem = props => (
+const CartItemsCard = props => (
   <RestaurantContext.Consumer>
     {value => {
       const {
@@ -95,4 +95,4 @@ const CartItem = props => (
   </RestaurantContext.Consumer>
 )
 
-export default CartItem
+export default CartItemsCard
